@@ -56,6 +56,10 @@ public class Line {
         stations.add(order.getValue(), station);
     }
 
+    public boolean deleteSection(final Station deletedStation) {
+        return stations.removeIf(station -> Objects.equals(station.getName(), deletedStation));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

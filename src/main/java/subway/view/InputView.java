@@ -64,6 +64,16 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public String readDeleteSectionLine() {
+        System.out.println(System.lineSeparator() + Request.DELETE_SECTION_LINE.value);
+        return scanner.nextLine();
+    }
+
+    public String readDeleteSectionStation() {
+        System.out.println(System.lineSeparator() + Request.DELETE_SECTION_LINE.value);
+        return scanner.nextLine();
+    }
+
     private enum Request {
         ENTER_FUNCTION("## 원하는 기능을 선택하세요."),
         CREATE_STATION("## 등록할 역 이름을 입력하세요."),
@@ -74,7 +84,9 @@ public class InputView {
         CREATE_DOWN_STATION("## 등록할 노선의 하행 종점역 이름을 입력하세요."),
         ENTER_LINE("## 노선을 입력하세요."),
         ENTER_STATION("## 역이름을 입력하세요."),
-        ENTER_ORDER("## 순서를 입력하세요.");
+        ENTER_ORDER("## 순서를 입력하세요."),
+        DELETE_SECTION_LINE("## 삭제할 구간의 노선을 입력하세요."),
+        DELETE_SECTION_STATION("## 삭제할 구간의 역을 입력하세요.");
         private final String value;
 
         Request(final String value) {
