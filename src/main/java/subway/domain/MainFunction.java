@@ -6,7 +6,7 @@ import subway.exception.GameException;
 
 public enum MainFunction {
     STATION_MANAGEMENT("1"),
-    NOTION_MANAGEMENT("2"),
+    LINE_MANAGEMENT("2"),
     SECTION_MANAGEMENT("3"),
     SUBWAY_ROUTE_MAP("4"),
     TERMINATION("Q");

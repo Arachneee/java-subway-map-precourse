@@ -9,7 +9,8 @@ public enum ErrorMessage {
     START_ZERO("0으로 시작할 수 없습니다."),
     INVALID_RANGE("잘못된 범위입니다."),
     INVALID_SIZE("잘못된 크기입니다."),
-    INVALID_FORMAT("입력 형식이 잘못되었습니다.");
+    INVALID_FORMAT("입력 형식이 잘못되었습니다."),
+    LINE_EXISTENCE("노선에 등록된 역은 삭제할 수 없습니다.");
 
     private static final String PREFIX = "[ERROR] ";
     private final String message;

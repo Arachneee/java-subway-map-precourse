@@ -4,7 +4,7 @@ package subway.controller;
 import subway.InputRoofer;
 import subway.domain.Station;
 import subway.domain.StationFunction;
-import subway.domain.StationRepository;
+import subway.service.StationService;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -41,7 +41,7 @@ public class StationController {
         Station station = getStation();
 
         try {
-            StationRepository.addStation(station);
+            StationService.create(station);
             outputView.printCreateStation();
         } catch (IllegalArgumentException illegalArgumentException) {
             outputView.printError(illegalArgumentException.getMessage());
@@ -57,8 +57,7 @@ public class StationController {
 
     private void delete() {
         Station station = getStation();
-
-        StationRepository.deleteStation(station);
+        StationService.delete(station);
     }
 
     private void read() {
