@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.exception.ErrorMessage;
+import subway.exception.GameException;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
@@ -13,6 +15,10 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
+        if (stations.contains(station)) {
+            throw new GameException(ErrorMessage.DUPLICATE_STATION);
+        }
+
         stations.add(station);
     }
 
