@@ -40,8 +40,9 @@ public class LineController {
     }
 
     private StationLineFunction getLineFunction() {
+        outputView.printLineFunction();
         return InputRoofer.getByRoof(() -> {
-            String functionSource = inputView.readStationLineFunction();
+            String functionSource = inputView.readFunction();
             return StationLineFunction.from(functionSource);
         });
     }

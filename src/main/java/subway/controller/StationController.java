@@ -41,8 +41,9 @@ public class StationController {
     }
 
     private StationLineFunction getStationFunction() {
+        outputView.printStationFunction();
         return InputRoofer.getByRoof(() -> {
-            String stationFunctionSource = inputView.readStationLineFunction();
+            String stationFunctionSource = inputView.readFunction();
             return StationLineFunction.from(stationFunctionSource);
         });
     }

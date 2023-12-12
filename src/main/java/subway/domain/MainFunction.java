@@ -35,4 +35,8 @@ public enum MainFunction {
     public boolean isLine() {
         return this.equals(LINE_MANAGEMENT);
     }
+
+    public boolean isSection() {
+        return this.equals(SECTION_MANAGEMENT);
+    }
 }

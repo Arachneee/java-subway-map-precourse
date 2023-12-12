@@ -35,11 +35,18 @@ public class MainController {
             if (mainFunction.isStation()) {
                 StationController stationController = new StationController(inputView, outputView);
                 stationController.run();
+                continue;
             }
 
             if (mainFunction.isLine()) {
                 LineController lineController = new LineController(inputView, outputView);
                 lineController.run();
+                continue;
+            }
+
+            if (mainFunction.isSection()) {
+                SectionController sectionController = new SectionController(inputView, outputView);
+                sectionController.run();
             }
         }
 
@@ -50,8 +57,9 @@ public class MainController {
     }
 
     private MainFunction getMainFunction() {
+        outputView.printMainFunction();
         return InputRoofer.getByRoof(() -> {
-            String mainFunctionSource = inputView.readMainFunction();
+            String mainFunctionSource = inputView.readFunction();
             return MainFunction.from(mainFunctionSource);
         });
     }
