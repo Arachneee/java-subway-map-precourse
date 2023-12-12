@@ -5,8 +5,6 @@ import subway.domain.LineRepository;
 import subway.domain.Order;
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.exception.ErrorMessage;
-import subway.exception.GameException;
 
 public class SectionService {
 
@@ -15,13 +13,6 @@ public class SectionService {
         Station station = StationRepository.findByStationName(stationName);
         Order order = new Order(orderSource);
 
-        if (line.containStation(station)) {
-            throw new GameException(ErrorMessage.INVALID_SECTION);
-        }
-
-        if (line.canAddOrder(order)) {
-            throw new GameException(ErrorMessage.INVALID_ORDER);
-        }
-
+        line.addSection(station, order);
     }
 }

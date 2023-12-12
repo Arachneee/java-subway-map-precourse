@@ -44,8 +44,16 @@ public class Line {
         return name.equals(lineName);
     }
 
-    public boolean canAddOrder(final Order order) {
-        return order.getValue() < stations.size();
+    public void addSection(final Station station, final Order order) {
+        if (containStation(station)) {
+            throw new GameException(ErrorMessage.INVALID_SECTION);
+        }
+
+        if (order.getValue() < stations.size()) {
+            throw new GameException(ErrorMessage.INVALID_ORDER);
+        }
+
+        stations.add(order.getValue(), station);
     }
 
     @Override
