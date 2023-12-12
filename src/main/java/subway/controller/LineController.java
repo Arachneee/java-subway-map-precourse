@@ -50,13 +50,22 @@ public class LineController {
 
     private void create() {
         Line line = getLine();
+        Station upStation = getStation();
+        Station downStation = getStation();
 
         try {
             LineService.create(line);
-            outputView.printCreateStation();
+            outputView.printCreateLine();
         } catch (IllegalArgumentException illegalArgumentException) {
             outputView.printError(illegalArgumentException.getMessage());
         }
+    }
+
+    private Station getStation() {
+        return InputRoofer.getByRoof(() -> {
+            String stationSource = inputView.readStation();
+            return new Station(stationSource);
+        });
     }
 
     private Line getLine() {
@@ -71,7 +80,7 @@ public class LineController {
 
         try {
             LineService.delete(line);
-            outputView.printDeleteStation();
+            outputView.printDeleteLine();
         } catch (IllegalArgumentException illegalArgumentException) {
             outputView.printError(illegalArgumentException.getMessage());
         }
