@@ -29,8 +29,28 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public String readLine() {
+    public String readCreateLine() {
         System.out.println(System.lineSeparator() + Request.CREATE_LINE.value);
+        return scanner.nextLine();
+    }
+
+    public String readUpStation() {
+        System.out.println(System.lineSeparator() + Request.CREATE_UP_STATION.value);
+        return scanner.nextLine();
+    }
+
+    public String readDownStation() {
+        System.out.println(System.lineSeparator() + Request.CREATE_DOWN_STATION.value);
+        return scanner.nextLine();
+    }
+
+    public String readDeleteStation() {
+        System.out.println(System.lineSeparator() + Request.DELETE_STATION.value);
+        return scanner.nextLine();
+    }
+
+    public String readDeleteLine() {
+        System.out.println(System.lineSeparator() + Request.DELETE_LINE.value);
         return scanner.nextLine();
     }
 
@@ -51,7 +71,9 @@ public class InputView {
                 + "\n"),
         ENTER_FUNCTION("## 원하는 기능을 선택하세요."),
         CREATE_STATION("## 등록할 역 이름을 입력하세요."),
+        DELETE_STATION("## 삭제할 역 이름을 입력하세요."),
         CREATE_LINE("## 등록할 노선 이름을 입력하세요."),
+        DELETE_LINE("## 삭제할 노선 이름을 입력하세요."),
         CREATE_UP_STATION("## 등록할 노선의 상행 종점역 이름을 입력하세요."),
         CREATE_DOWN_STATION("## 등록할 노선의 하행 종점역 이름을 입력하세요."),;
         private final String value;

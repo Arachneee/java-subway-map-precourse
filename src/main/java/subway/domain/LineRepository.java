@@ -22,7 +22,7 @@ public class LineRepository {
         lines.add(line);
     }
 
-    public static boolean deleteLineByName(final Line deletedLine) {
+    public static boolean deleteLine(final Line deletedLine) {
         return lines.removeIf(line -> Objects.equals(line, deletedLine));
     }
 }

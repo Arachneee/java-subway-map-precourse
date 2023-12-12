@@ -16,6 +16,6 @@ public class LineService {
     }
 
     public static void delete(Line line) {
-
+        boolean success = LineRepository.deleteLine(line);
     }
 }

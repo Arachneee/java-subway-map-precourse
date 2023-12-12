@@ -67,7 +67,7 @@ public class StationController {
     }
 
     private void delete() {
-        Station station = getStation();
+        Station station = getDeleteStation();
 
         try {
             StationService.delete(station);
@@ -75,6 +75,13 @@ public class StationController {
         } catch (IllegalArgumentException illegalArgumentException) {
             outputView.printError(illegalArgumentException.getMessage());
         }
+    }
+
+    private Station getDeleteStation() {
+        return InputRoofer.getByRoof(() -> {
+            String stationSource = inputView.readDeleteStation();
+            return new Station(stationSource);
+        });
     }
 
     private void read() {
