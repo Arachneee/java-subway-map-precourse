@@ -60,6 +60,13 @@ public class LineController {
         }
     }
 
+    private Line getCreateLine() {
+        return InputRoofer.getByRoof(() -> {
+            String lineSource = inputView.readCreateLine();
+            return new Line(lineSource);
+        });
+    }
+
     private Station getUpStation() {
         return InputRoofer.getByRoof(() -> {
             String stationSource = inputView.readUpStation();
@@ -71,13 +78,6 @@ public class LineController {
         return InputRoofer.getByRoof(() -> {
             String stationSource = inputView.readDownStation();
             return new Station(stationSource);
-        });
-    }
-
-    private Line getCreateLine() {
-        return InputRoofer.getByRoof(() -> {
-            String lineSource = inputView.readCreateLine();
-            return new Line(lineSource);
         });
     }
 

@@ -1,10 +1,13 @@
 package subway.controller;
 
 import subway.InputRoofer;
+import subway.controller.parser.Parser;
 import subway.domain.Line;
+import subway.domain.Order;
 import subway.domain.SectionFunction;
 import subway.domain.Station;
 import subway.service.LineService;
+import subway.service.SectionService;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -43,16 +46,37 @@ public class SectionController {
     }
 
     private void create() {
-        Line line = getCreateLine();
-        Station upStation = getUpStation();
-        Station downStation = getDownStation();
+        Line line = getLine();
+        Station station = getStation();
+        Order order = getOrder();
 
         try {
-            LineService.create(line, upStation, downStation);
+            SectionService.create(line, station, order);
             outputView.printCreateLine();
         } catch (IllegalArgumentException illegalArgumentException) {
             outputView.printError(illegalArgumentException.getMessage());
         }
+    }
+
+    private Order getOrder() {
+        return InputRoofer.getByRoof(() -> {
+            String order = inputView.readOrder();
+            return new Order(Parser.convertToInt(order));
+        });
+    }
+
+    private Station getStation() {
+        return InputRoofer.getByRoof(() -> {
+            String station = inputView.readStation();
+            return new Station(station);
+        });
+    }
+
+    private Line getLine() {
+        return InputRoofer.getByRoof(() -> {
+            String line = inputView.readLine();
+            return new Line(line);
+        });
     }
 
     private void delete() {

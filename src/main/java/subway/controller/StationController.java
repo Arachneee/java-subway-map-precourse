@@ -61,7 +61,7 @@ public class StationController {
 
     private Station getStation() {
         return InputRoofer.getByRoof(() -> {
-            String stationSource = inputView.readStation();
+            String stationSource = inputView.readCreateStation();
             return new Station(stationSource);
         });
     }

@@ -14,7 +14,7 @@ public class InputView {
         scanner.close();
     }
 
-    public String readStation() {
+    public String readCreateStation() {
         System.out.println(System.lineSeparator() + Request.CREATE_STATION.value);
         return scanner.nextLine();
     }
@@ -49,6 +49,21 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public String readLine() {
+        System.out.println(Request.ENTER_LINE.value);
+        return scanner.nextLine();
+    }
+
+    public String readStation() {
+        System.out.println(Request.ENTER_STATION.value);
+        return scanner.nextLine();
+    }
+
+    public String readOrder() {
+        System.out.println(Request.ENTER_ORDER.value);
+        return scanner.nextLine();
+    }
+
     private enum Request {
         ENTER_FUNCTION("## 원하는 기능을 선택하세요."),
         CREATE_STATION("## 등록할 역 이름을 입력하세요."),
@@ -56,7 +71,10 @@ public class InputView {
         CREATE_LINE("## 등록할 노선 이름을 입력하세요."),
         DELETE_LINE("## 삭제할 노선 이름을 입력하세요."),
         CREATE_UP_STATION("## 등록할 노선의 상행 종점역 이름을 입력하세요."),
-        CREATE_DOWN_STATION("## 등록할 노선의 하행 종점역 이름을 입력하세요.");
+        CREATE_DOWN_STATION("## 등록할 노선의 하행 종점역 이름을 입력하세요."),
+        ENTER_LINE("## 노선을 입력하세요."),
+        ENTER_STATION("## 역이름을 입력하세요."),
+        ENTER_ORDER("## 순서를 입력하세요.");
         private final String value;
 
         Request(final String value) {
