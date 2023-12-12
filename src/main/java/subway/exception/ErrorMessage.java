@@ -7,6 +7,7 @@ public enum ErrorMessage {
     LINE_EXISTENCE("노선에 등록된 역은 삭제할 수 없습니다."),
     INVALID_STATION("존재하지 않는 역입니다."),
     DUPLICATE_LINE("중복된 노선 이름입니다."),
+    NONE_LINE("존재하지 않는 노선입니다."),
     BLANK("입력이 비어있을 수 없습니다."),
     NOT_NUMBER("숫자가 아닙니다."),
     START_ZERO("0으로 시작할 수 없습니다."),

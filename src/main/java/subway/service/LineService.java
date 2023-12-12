@@ -3,6 +3,8 @@ package subway.service;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
+import subway.exception.ErrorMessage;
+import subway.exception.GameException;
 
 public class LineService {
 
@@ -17,5 +19,9 @@ public class LineService {
 
     public static void delete(Line line) {
         boolean success = LineRepository.deleteLine(line);
+
+        if (!success) {
+            throw new GameException(ErrorMessage.NONE_LINE);
+        }
     }
 }
