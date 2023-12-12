@@ -3,7 +3,7 @@ package subway.exception;
 public enum ErrorMessage {
 
     INVALID_FUNCTION("선택할 수 없는 기능입니다."),
-    DUPLICATE_STATION("중복된 역입니다."),
+    DUPLICATE_STATION("이미 등록된 역 이름입니다."),
     BLANK("입력이 비어있을 수 없습니다."),
     NOT_NUMBER("숫자가 아닙니다."),
     START_ZERO("0으로 시작할 수 없습니다."),

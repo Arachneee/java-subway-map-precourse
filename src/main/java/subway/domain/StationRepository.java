@@ -14,7 +14,7 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
-    public static void addStation(Station station) {
+    public static void addStation(final Station station) {
         if (stations.contains(station)) {
             throw new GameException(ErrorMessage.DUPLICATE_STATION);
         }
@@ -22,7 +22,7 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public static boolean deleteStation(final Station deletedStation) {
+        return stations.removeIf(station -> Objects.equals(station, deletedStation));
     }
 }

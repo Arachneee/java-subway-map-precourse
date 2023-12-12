@@ -39,7 +39,13 @@ public class StationController {
 
     private void create() {
         Station station = getStation();
-        StationRepository.addStation(station);
+
+        try {
+            StationRepository.addStation(station);
+            outputView.printCreateStation();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            outputView.printError(illegalArgumentException.getMessage());
+        }
     }
 
     private Station getStation() {
@@ -50,7 +56,9 @@ public class StationController {
     }
 
     private void delete() {
+        Station station = getStation();
 
+        StationRepository.deleteStation(station);
     }
 
     private void read() {

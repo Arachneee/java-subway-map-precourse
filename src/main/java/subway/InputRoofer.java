@@ -10,7 +10,7 @@ public final class InputRoofer {
     private InputRoofer() {
     }
 
-    public static  <T> T getByRoof(final Supplier<T> method) {
+    public static <T> T getByRoof(final Supplier<T> method) {
         while (true) {
             try {
                 return method.get();

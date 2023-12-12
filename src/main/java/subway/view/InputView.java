@@ -25,13 +25,13 @@ public class InputView {
     }
 
     public String readStation() {
-        System.out.println(Request.CREATE_STATION.value);
+        System.out.println(System.lineSeparator() + Request.CREATE_STATION.value);
         return scanner.nextLine();
     }
 
     private enum Request {
         NAME(""),
-        MAIN_FUNCTION("## 메인 화면\n"
+        MAIN_FUNCTION("\n## 메인 화면\n"
                 + "1. 역 관리\n"
                 + "2. 노선 관리\n"
                 + "3. 구간 관리\n"
