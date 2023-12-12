@@ -46,13 +46,13 @@ public class SectionController {
     }
 
     private void create() {
-        Line line = getLine();
-        Station station = getStation();
-        Order order = getOrder();
+        String line = inputView.readLine();
+        String station = inputView.readStation();
+        int order = Parser.convertToInt(inputView.readOrder());
 
         try {
             SectionService.create(line, station, order);
-            outputView.printCreateLine();
+            outputView.printCreateSection();
         } catch (IllegalArgumentException illegalArgumentException) {
             outputView.printError(illegalArgumentException.getMessage());
         }
@@ -62,20 +62,6 @@ public class SectionController {
         return InputRoofer.getByRoof(() -> {
             String order = inputView.readOrder();
             return new Order(Parser.convertToInt(order));
-        });
-    }
-
-    private Station getStation() {
-        return InputRoofer.getByRoof(() -> {
-            String station = inputView.readStation();
-            return new Station(station);
-        });
-    }
-
-    private Line getLine() {
-        return InputRoofer.getByRoof(() -> {
-            String line = inputView.readLine();
-            return new Line(line);
         });
     }
 

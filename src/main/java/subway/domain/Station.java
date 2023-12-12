@@ -20,6 +20,10 @@ public class Station {
         }
     }
 
+    public boolean isName(String stationName) {
+        return name.equals(stationName);
+    }
+
     public String getName() {
         return name;
     }

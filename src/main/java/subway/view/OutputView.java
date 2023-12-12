@@ -58,13 +58,15 @@ public class OutputView {
         System.out.println(Response.SECTION_FUNCTION.value);
     }
 
+    public void printCreateSection() {
+        System.out.println(Response.CREATE_SECTION.value);
+    }
+
+    public void printDeleteSection() {
+        System.out.println(Response.DELETE_SECTION.value);
+    }
+
     private enum Response {
-        CREATE_STATION("지하철 역이 등록되었습니다."),
-        DELETE_STATION("지하철 역이 삭제되었습니다."),
-        CREATE_LINE("지하철 노선이 등록되었습니다."),
-        DELETE_LINE("지하철 노선이 삭제되었습니다."),
-        STATIONS("## 역 목록"),
-        LINES("## 노선 목록"),
         MAIN_FUNCTION("\n## 메인 화면\n"
                 + "1. 역 관리\n"
                 + "2. 노선 관리\n"
@@ -78,7 +80,6 @@ public class OutputView {
                 + "3. 역 조회\n"
                 + "B. 돌아가기\n"
                 + "\n"),
-
         LINE_FUNCTION("## 노선 관리 화면\n"
                 + "1. 노선 등록\n"
                 + "2. 노선 삭제\n"
@@ -89,7 +90,16 @@ public class OutputView {
                 + "1. 구간 등록\n"
                 + "2. 구간 삭제\n"
                 + "B. 돌아가기\n"
-                + "\n");
+                + "\n"),
+        CREATE_STATION("지하철 역이 등록되었습니다."),
+        DELETE_STATION("지하철 역이 삭제되었습니다."),
+        CREATE_LINE("지하철 노선이 등록되었습니다."),
+        DELETE_LINE("지하철 노선이 삭제되었습니다."),
+        STATIONS("## 역 목록"),
+        LINES("## 노선 목록"),
+        CREATE_SECTION("구간이 등록되었습니다."),
+        DELETE_SECTION("구간이 삭제되었습니다.");
+
 
         private static final String PREFIX = "[INFO] ";
         private static final String ENTER = System.lineSeparator();

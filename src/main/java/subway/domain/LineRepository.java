@@ -25,4 +25,11 @@ public class LineRepository {
     public static boolean deleteLine(final Line deletedLine) {
         return lines.removeIf(line -> Objects.equals(line, deletedLine));
     }
+
+    public static Line findByLineName(final String lineName) {
+        return lines.stream()
+                .filter(line -> line.isName(lineName))
+                .findAny()
+                .orElseThrow(() -> new GameException(ErrorMessage.NONE_LINE));
+    }
 }

@@ -40,6 +40,14 @@ public class Line {
         stations.add(downStation);
     }
 
+    public boolean isName(final String lineName) {
+        return name.equals(lineName);
+    }
+
+    public boolean canAddOrder(final Order order) {
+        return order.getValue() < stations.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

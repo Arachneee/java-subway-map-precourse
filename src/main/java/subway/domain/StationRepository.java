@@ -25,4 +25,11 @@ public class StationRepository {
     public static boolean deleteStation(final Station deletedStation) {
         return stations.removeIf(station -> Objects.equals(station, deletedStation));
     }
+
+    public static Station findByStationName(final String stationName) {
+        return stations.stream()
+                .filter(station -> station.isName(stationName))
+                .findAny()
+                .orElseThrow(() -> new GameException(ErrorMessage.INVALID_STATION));
+    }
 }
