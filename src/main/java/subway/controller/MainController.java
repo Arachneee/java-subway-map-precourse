@@ -16,11 +16,17 @@ public class MainController {
     }
 
     public void run() {
-        String mainFunctionSource = inputView.readMainFunction();
-        MainFunction mainFunction = MainFunction.from(mainFunctionSource);
+        MainFunction mainFunction = getMainFunction();
 
 
         inputView.close();
+    }
+
+    private MainFunction getMainFunction() {
+        return getByRoof(() -> {
+            String mainFunctionSource = inputView.readMainFunction();
+            return MainFunction.from(mainFunctionSource);
+        });
     }
 
     private Object getInput() {
