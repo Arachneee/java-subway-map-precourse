@@ -1,6 +1,6 @@
 package subway.controller;
 
-import java.util.function.Supplier;
+import subway.InputRoofer;
 import subway.domain.MainFunction;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -15,35 +15,40 @@ public class MainController {
         this.outputView = outputView;
     }
 
+    public void start() {
+        init();
+        run();
+        terminate();
+    }
+
+    private void init() {
+    }
+
     public void run() {
-        MainFunction mainFunction = getMainFunction();
+        while (true) {
+            MainFunction mainFunction = getMainFunction();
 
+            if (mainFunction.isTerminate()) {
+                return;
+            }
 
+            if (mainFunction.isStation()) {
+                StationController stationController = new StationController(inputView, outputView);
+                stationController.run();
+            }
+        }
+
+    }
+
+    private void terminate() {
         inputView.close();
     }
 
     private MainFunction getMainFunction() {
-        return getByRoof(() -> {
+        return InputRoofer.getByRoof(() -> {
             String mainFunctionSource = inputView.readMainFunction();
             return MainFunction.from(mainFunctionSource);
         });
-    }
-
-    private Object getInput() {
-        return getByRoof(() -> {
-            // TODO
-            return null;
-        });
-    }
-
-    private <T> T getByRoof(final Supplier<T> method) {
-        while (true) {
-            try {
-                return method.get();
-            } catch (IllegalArgumentException illegalArgumentException) {
-                outputView.printError(illegalArgumentException.getMessage());
-            }
-        }
     }
 
 }

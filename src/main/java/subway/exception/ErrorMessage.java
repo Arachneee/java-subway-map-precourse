@@ -2,7 +2,7 @@ package subway.exception;
 
 public enum ErrorMessage {
 
-    INVALID_MAIN_FUNCTION("선택할 수 없는 기능입니다."),
+    INVALID_FUNCTION("선택할 수 없는 기능입니다."),
     BLANK("입력이 비어있을 수 없습니다."),
     NOT_NUMBER("숫자가 아닙니다."),
     START_ZERO("0으로 시작할 수 없습니다."),

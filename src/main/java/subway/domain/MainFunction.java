@@ -21,6 +21,14 @@ public enum MainFunction {
         return Arrays.stream(values())
                 .filter(function -> function.value.equals(value))
                 .findAny()
-                .orElseThrow(() -> new GameException(ErrorMessage.INVALID_MAIN_FUNCTION));
+                .orElseThrow(() -> new GameException(ErrorMessage.INVALID_FUNCTION));
+    }
+
+    public boolean isTerminate() {
+        return this.equals(TERMINATION);
+    }
+
+    public boolean isStation() {
+        return this.equals(STATION_MANAGEMENT);
     }
 }
