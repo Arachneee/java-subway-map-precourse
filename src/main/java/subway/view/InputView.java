@@ -24,6 +24,11 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public String readStation() {
+        System.out.println(Request.CREATE_STATION.value);
+        return scanner.nextLine();
+    }
+
     private enum Request {
         NAME(""),
         MAIN_FUNCTION("## 메인 화면\n"
@@ -39,7 +44,8 @@ public class InputView {
                 + "3. 역 조회\n"
                 + "B. 돌아가기\n"
                 + "\n"),
-        ENTER_FUNCTION("## 원하는 기능을 선택하세요.");
+        ENTER_FUNCTION("## 원하는 기능을 선택하세요."),
+        CREATE_STATION("## 등록할 역 이름을 입력하세요.");
         private final String value;
 
         Request(final String value) {

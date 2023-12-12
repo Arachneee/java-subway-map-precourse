@@ -23,4 +23,20 @@ public enum StationFunction {
                 .findAny()
                 .orElseThrow(() -> new GameException(ErrorMessage.INVALID_FUNCTION));
     }
+
+    public boolean isBack() {
+        return this.equals(BACK);
+    }
+
+    public boolean isCreate() {
+        return this.equals(CREATE);
+    }
+
+    public boolean isDelete() {
+        return this.equals(DELETE);
+    }
+
+    public boolean isRead() {
+        return this.equals(READ);
+    }
 }
