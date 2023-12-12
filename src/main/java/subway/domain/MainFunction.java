@@ -39,4 +39,8 @@ public enum MainFunction {
     public boolean isSection() {
         return this.equals(SECTION_MANAGEMENT);
     }
+
+    public boolean isMap() {
+        return this.equals(SUBWAY_ROUTE_MAP);
+    }
 }

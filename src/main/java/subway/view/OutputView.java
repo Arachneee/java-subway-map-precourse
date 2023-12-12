@@ -1,6 +1,7 @@
 package subway.view;
 
 import java.util.List;
+import subway.response.LineDto;
 
 public class OutputView {
 
@@ -66,6 +67,18 @@ public class OutputView {
         System.out.println(Response.DELETE_SECTION.value);
     }
 
+    public void printAllMap(final List<LineDto> lineDtos) {
+        System.out.println(Response.MAP.value);
+        lineDtos.forEach(this::printMap);
+    }
+
+    private void printMap(final LineDto lineDto) {
+        printLine(lineDto.getName());
+        System.out.println("---");
+        lineDto.getStations().forEach(this::printStation);
+        System.out.println();
+    }
+
     private enum Response {
         MAIN_FUNCTION("\n## 메인 화면\n"
                 + "1. 역 관리\n"
@@ -98,7 +111,8 @@ public class OutputView {
         STATIONS("## 역 목록"),
         LINES("## 노선 목록"),
         CREATE_SECTION("구간이 등록되었습니다."),
-        DELETE_SECTION("구간이 삭제되었습니다.");
+        DELETE_SECTION("구간이 삭제되었습니다."),
+        MAP("## 지하철 노선도");
 
 
         private static final String PREFIX = "[INFO] ";

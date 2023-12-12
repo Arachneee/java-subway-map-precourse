@@ -2,11 +2,7 @@ package subway.controller;
 
 import subway.InputRoofer;
 import subway.controller.parser.Parser;
-import subway.domain.Line;
-import subway.domain.Order;
 import subway.domain.SectionFunction;
-import subway.domain.Station;
-import subway.service.LineService;
 import subway.service.SectionService;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -56,13 +52,6 @@ public class SectionController {
         } catch (IllegalArgumentException illegalArgumentException) {
             outputView.printError(illegalArgumentException.getMessage());
         }
-    }
-
-    private Order getOrder() {
-        return InputRoofer.getByRoof(() -> {
-            String order = inputView.readOrder();
-            return new Order(Parser.convertToInt(order));
-        });
     }
 
     private void delete() {
