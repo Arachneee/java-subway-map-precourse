@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import subway.InputRoofer;
 import subway.domain.Station;
-import subway.domain.StationFunction;
+import subway.domain.StationLineFunction;
 import subway.response.StationDto;
 import subway.service.StationService;
 import subway.view.InputView;
@@ -22,7 +22,7 @@ public class StationController {
     }
 
     public void run() {
-        StationFunction stationFunction = getStationFunction();
+        StationLineFunction stationFunction = getStationFunction();
 
         if (stationFunction.isCreate()) {
             create();
@@ -39,6 +39,13 @@ public class StationController {
         }
 
         // StationFunction is BACK
+    }
+
+    private StationLineFunction getStationFunction() {
+        return InputRoofer.getByRoof(() -> {
+            String stationFunctionSource = inputView.readStationLineFunction();
+            return StationLineFunction.from(stationFunctionSource);
+        });
     }
 
     private void create() {
@@ -80,12 +87,5 @@ public class StationController {
         return stations.stream()
                 .map(station -> new StationDto(station.getName()))
                 .collect(Collectors.toList());
-    }
-
-    private StationFunction getStationFunction() {
-        return InputRoofer.getByRoof(() -> {
-            String stationFunctionSource = inputView.readStationFunction();
-            return StationFunction.from(stationFunctionSource);
-        });
     }
 }

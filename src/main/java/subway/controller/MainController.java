@@ -36,6 +36,11 @@ public class MainController {
                 StationController stationController = new StationController(inputView, outputView);
                 stationController.run();
             }
+
+            if (mainFunction.isLine()) {
+                LineController lineController = new LineController(inputView, outputView);
+                lineController.run();
+            }
         }
 
     }

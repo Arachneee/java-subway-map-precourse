@@ -31,4 +31,8 @@ public enum MainFunction {
     public boolean isStation() {
         return this.equals(STATION_MANAGEMENT);
     }
+
+    public boolean isLine() {
+        return this.equals(LINE_MANAGEMENT);
+    }
 }

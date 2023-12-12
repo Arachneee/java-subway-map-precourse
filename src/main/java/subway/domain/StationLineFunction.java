@@ -4,7 +4,7 @@ import java.util.Arrays;
 import subway.exception.ErrorMessage;
 import subway.exception.GameException;
 
-public enum StationFunction {
+public enum StationLineFunction {
 
     CREATE("1"),
     DELETE("2"),
@@ -13,11 +13,11 @@ public enum StationFunction {
 
     private final String value;
 
-    StationFunction(String value) {
+    StationLineFunction(String value) {
         this.value = value;
     }
 
-    public static StationFunction from(final String value) {
+    public static StationLineFunction from(final String value) {
         return Arrays.stream(values())
                 .filter(function -> function.value.equals(value))
                 .findAny()

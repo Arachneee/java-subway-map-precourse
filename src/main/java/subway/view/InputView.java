@@ -19,13 +19,18 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public String readStationFunction() {
+    public String readStationLineFunction() {
         System.out.println(Request.STATION_FUNCTION.value + Request.ENTER_FUNCTION.value);
         return scanner.nextLine();
     }
 
     public String readStation() {
         System.out.println(System.lineSeparator() + Request.CREATE_STATION.value);
+        return scanner.nextLine();
+    }
+
+    public String readLine() {
+        System.out.println(System.lineSeparator() + Request.CREATE_LINE.value);
         return scanner.nextLine();
     }
 
@@ -45,7 +50,8 @@ public class InputView {
                 + "B. 돌아가기\n"
                 + "\n"),
         ENTER_FUNCTION("## 원하는 기능을 선택하세요."),
-        CREATE_STATION("## 등록할 역 이름을 입력하세요.");
+        CREATE_STATION("## 등록할 역 이름을 입력하세요."),
+        CREATE_LINE("## 등록할 노선 이름을 입력하세요.");
         private final String value;
 
         Request(final String value) {
