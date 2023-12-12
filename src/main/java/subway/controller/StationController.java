@@ -4,6 +4,7 @@ package subway.controller;
 import subway.InputRoofer;
 import subway.domain.Station;
 import subway.domain.StationFunction;
+import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -38,7 +39,7 @@ public class StationController {
 
     private void create() {
         Station station = getStation();
-
+        StationRepository.addStation(station);
     }
 
     private Station getStation() {
