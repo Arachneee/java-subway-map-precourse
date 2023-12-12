@@ -28,8 +28,9 @@ public class Line {
         return name;
     }
 
-    public boolean containStation(final Station station) {
-        return stations.contains(station);
+    public boolean containStation(final String stationName) {
+        return stations.stream()
+                .anyMatch(station -> station.getName().equals(stationName));
     }
 
     public void create(final Station upStation, final Station downStation) {
@@ -46,11 +47,11 @@ public class Line {
     }
 
     public void addSection(final Station station, final Order order) {
-        if (containStation(station)) {
+        if (stations.contains(station)) {
             throw new GameException(ErrorMessage.INVALID_SECTION);
         }
 
-        if (order.getValue() < stations.size()) {
+        if (order.getValue() >= stations.size()) {
             throw new GameException(ErrorMessage.INVALID_ORDER);
         }
 
@@ -58,7 +59,7 @@ public class Line {
     }
 
     public boolean deleteSection(final Station deletedStation) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), deletedStation));
+        return stations.removeIf(station -> Objects.equals(station, deletedStation));
     }
 
     public int totalStationCount() {

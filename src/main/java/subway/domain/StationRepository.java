@@ -22,8 +22,8 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static boolean deleteStation(final Station deletedStation) {
-        return stations.removeIf(station -> Objects.equals(station, deletedStation));
+    public static boolean deleteStationByName(final String name) {
+        return stations.removeIf(station -> Objects.equals(station.getName(), name));
     }
 
     public static Station findByStationName(final String stationName) {

@@ -13,26 +13,26 @@ public class StationService {
     private StationService() {
     }
 
-    public static void create(final Station station) {
-        StationRepository.addStation(station);
+    public static void create(final String stationName) {
+        StationRepository.addStation(new Station(stationName));
     }
 
-    public static void delete(final Station station) {
-        if (isInLine(station)) {
+    public static void delete(final String stationName) {
+        if (isInLine(stationName)) {
             throw new GameException(ErrorMessage.LINE_EXISTENCE);
         }
 
-        boolean success = StationRepository.deleteStation(station);
+        boolean success = StationRepository.deleteStationByName(stationName);
 
         if (!success) {
             throw new GameException(ErrorMessage.INVALID_STATION);
         }
     }
 
-    private static boolean isInLine(Station station) {
+    private static boolean isInLine(String stationName) {
         List<Line> lines = LineRepository.lines();
         return lines.stream()
-                .anyMatch(line -> line.containStation(station));
+                .anyMatch(line -> line.containStation(stationName));
     }
 
     public static List<Station> readAll() {

@@ -70,7 +70,7 @@ public class InputView {
     }
 
     public String readDeleteSectionStation() {
-        System.out.println(System.lineSeparator() + Request.DELETE_SECTION_LINE.value);
+        System.out.println(System.lineSeparator() + Request.DELETE_SECTION_STATION.value);
         return scanner.nextLine();
     }
 

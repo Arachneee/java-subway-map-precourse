@@ -15,15 +15,20 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
-        if (lines.contains(line)) {
+        if (isContainLine(line)) {
             throw new GameException(ErrorMessage.DUPLICATE_LINE);
         }
 
         lines.add(line);
     }
 
-    public static boolean deleteLine(final Line deletedLine) {
-        return lines.removeIf(line -> Objects.equals(line, deletedLine));
+    private static boolean isContainLine(final Line addLine) {
+        return lines.stream()
+                .anyMatch(line -> line.getName().equals(addLine.getName()));
+    }
+
+    public static boolean deleteLineByName(final String name) {
+        return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
     public static Line findByLineName(final String lineName) {

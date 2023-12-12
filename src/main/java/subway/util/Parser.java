@@ -1,4 +1,4 @@
-package subway.controller.parser;
+package subway.util;
 
 
 import subway.exception.ErrorMessage;

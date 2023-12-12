@@ -2,9 +2,8 @@ package subway.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import subway.InputRoofer;
+import subway.util.InputRoofer;
 import subway.domain.Line;
-import subway.domain.Station;
 import subway.domain.StationLineFunction;
 import subway.service.LineService;
 import subway.view.InputView;
@@ -20,23 +19,25 @@ public class LineController {
     }
 
     public void run() {
-        StationLineFunction lineFunction = getLineFunction();
+        InputRoofer.runRoof(() -> {
+            StationLineFunction lineFunction = getLineFunction();
 
-        if (lineFunction.isCreate()) {
-            create();
-            return;
-        }
+            if (lineFunction.isCreate()) {
+                create();
+                return;
+            }
 
-        if (lineFunction.isDelete()) {
-            delete();
-            return;
-        }
+            if (lineFunction.isDelete()) {
+                delete();
+                return;
+            }
 
-        if (lineFunction.isRead()) {
-            read();
-        }
+            if (lineFunction.isRead()) {
+                read();
+            }
 
-        // LineFunction is BACK
+            // LineFunction is BACK
+        });
     }
 
     private StationLineFunction getLineFunction() {
@@ -48,55 +49,19 @@ public class LineController {
     }
 
     private void create() {
-        Line line = getCreateLine();
-        Station upStation = getUpStation();
-        Station downStation = getDownStation();
+        String line = inputView.readCreateLine();
+        String upStation = inputView.readUpStation();
+        String downStation = inputView.readDownStation();
 
-        try {
-            LineService.create(line, upStation, downStation);
-            outputView.printCreateLine();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            outputView.printError(illegalArgumentException.getMessage());
-        }
-    }
-
-    private Line getCreateLine() {
-        return InputRoofer.getByRoof(() -> {
-            String lineSource = inputView.readCreateLine();
-            return new Line(lineSource);
-        });
-    }
-
-    private Station getUpStation() {
-        return InputRoofer.getByRoof(() -> {
-            String stationSource = inputView.readUpStation();
-            return new Station(stationSource);
-        });
-    }
-
-    private Station getDownStation() {
-        return InputRoofer.getByRoof(() -> {
-            String stationSource = inputView.readDownStation();
-            return new Station(stationSource);
-        });
+        LineService.create(line, upStation, downStation);
+        outputView.printCreateLine();
     }
 
     private void delete() {
-        Line line = getDeleteLine();
+        String line = inputView.readDeleteLine();
 
-        try {
-            LineService.delete(line);
-            outputView.printDeleteLine();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            outputView.printError(illegalArgumentException.getMessage());
-        }
-    }
-
-    private Line getDeleteLine() {
-        return InputRoofer.getByRoof(() -> {
-            String lineSource = inputView.readDeleteLine();
-            return new Line(lineSource);
-        });
+        LineService.delete(line);
+        outputView.printDeleteLine();
     }
 
     private void read() {

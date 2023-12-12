@@ -1,7 +1,7 @@
 package subway.controller;
 
-import subway.InputRoofer;
-import subway.controller.parser.Parser;
+import subway.util.InputRoofer;
+import subway.util.Parser;
 import subway.domain.SectionFunction;
 import subway.service.SectionService;
 import subway.view.InputView;
@@ -18,18 +18,20 @@ public class SectionController {
     }
 
     public void run() {
-        SectionFunction sectionFunction = getSectionFunction();
+        InputRoofer.runRoof(() -> {
+            SectionFunction sectionFunction = getSectionFunction();
 
-        if (sectionFunction.isCreate()) {
-            create();
-            return;
-        }
+            if (sectionFunction.isCreate()) {
+                create();
+                return;
+            }
 
-        if (sectionFunction.isDelete()) {
-            delete();
-        }
+            if (sectionFunction.isDelete()) {
+                delete();
+            }
 
-        // SectionFunction is BACK
+            // SectionFunction is BACK
+        });
     }
 
     private SectionFunction getSectionFunction() {
@@ -46,23 +48,16 @@ public class SectionController {
         String station = inputView.readStation();
         int order = Parser.convertToInt(inputView.readOrder());
 
-        try {
-            SectionService.create(line, station, order);
-            outputView.printCreateSection();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            outputView.printError(illegalArgumentException.getMessage());
-        }
+        SectionService.create(line, station, order);
+        outputView.printCreateSection();
+
     }
 
     private void delete() {
         String line = inputView.readDeleteSectionLine();
         String station = inputView.readDeleteSectionStation();
 
-        try {
-            SectionService.delete(line, station);
-            outputView.printDeleteSection();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            outputView.printError(illegalArgumentException.getMessage());
-        }
+        SectionService.delete(line, station);
+        outputView.printDeleteSection();
     }
 }
