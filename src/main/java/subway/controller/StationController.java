@@ -1,14 +1,18 @@
 package subway.controller;
 
 
+import java.util.List;
+import java.util.stream.Collectors;
 import subway.InputRoofer;
 import subway.domain.Station;
 import subway.domain.StationFunction;
+import subway.response.StationDto;
 import subway.service.StationService;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 public class StationController {
+
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -57,11 +61,25 @@ public class StationController {
 
     private void delete() {
         Station station = getStation();
-        StationService.delete(station);
+
+        try {
+            StationService.delete(station);
+            outputView.printDeleteStation();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            outputView.printError(illegalArgumentException.getMessage());
+        }
     }
 
     private void read() {
+        List<Station> stations = StationService.readAll();
+        List<StationDto> stationDtos = createStationDtos(stations);
+        outputView.printStations(stationDtos);
+    }
 
+    private static List<StationDto> createStationDtos(List<Station> stations) {
+        return stations.stream()
+                .map(station -> new StationDto(station.getName()))
+                .collect(Collectors.toList());
     }
 
     private StationFunction getStationFunction() {

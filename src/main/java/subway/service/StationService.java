@@ -22,7 +22,11 @@ public class StationService {
             throw new GameException(ErrorMessage.LINE_EXISTENCE);
         }
 
-        StationRepository.deleteStation(station);
+        boolean success = StationRepository.deleteStation(station);
+
+        if (!success) {
+            throw new GameException(ErrorMessage.INVALID_STATION);
+        }
     }
 
     private static boolean isInLine(Station station) {
@@ -31,4 +35,7 @@ public class StationService {
                 .anyMatch(line -> line.containStation(station));
     }
 
+    public static List<Station> readAll() {
+        return StationRepository.stations();
+    }
 }
