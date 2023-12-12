@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.exception.ErrorMessage;
+import subway.exception.GameException;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
@@ -13,6 +15,10 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
+        if (lines.contains(line)) {
+            throw new GameException(ErrorMessage.DUPLICATE_LINE);
+        }
+
         lines.add(line);
     }
 
