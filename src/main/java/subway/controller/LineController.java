@@ -54,7 +54,7 @@ public class LineController {
         Station downStation = getStation();
 
         try {
-            LineService.create(line);
+            LineService.create(line, upStation, downStation);
             outputView.printCreateLine();
         } catch (IllegalArgumentException illegalArgumentException) {
             outputView.printError(illegalArgumentException.getMessage());

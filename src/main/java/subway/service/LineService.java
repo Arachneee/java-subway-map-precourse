@@ -2,6 +2,7 @@ package subway.service;
 
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Station;
 
 public class LineService {
 
@@ -9,7 +10,8 @@ public class LineService {
     }
 
 
-    public static void create(final Line line) {
+    public static void create(final Line line, final Station upStation, final Station downStation) {
+        line.create(upStation, downStation);
         LineRepository.addLine(line);
     }
 
