@@ -6,9 +6,7 @@ import subway.InputRoofer;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.StationLineFunction;
-import subway.response.StationDto;
 import subway.service.LineService;
-import subway.service.StationService;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -101,14 +99,14 @@ public class LineController {
     }
 
     private void read() {
-        List<Station> stations = StationService.readAll();
-        List<StationDto> stationDtos = createStationDtos(stations);
-        outputView.printStations(stationDtos);
+        List<Line> lines = LineService.readAll();
+        List<String> lineNames = createLineNames(lines);
+        outputView.printLines(lineNames);
     }
 
-    private static List<StationDto> createStationDtos(List<Station> stations) {
-        return stations.stream()
-                .map(station -> new StationDto(station.getName()))
+    private static List<String> createLineNames(List<Line> lines) {
+        return lines.stream()
+                .map(Line::getName)
                 .collect(Collectors.toList());
     }
 }

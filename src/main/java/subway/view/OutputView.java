@@ -1,7 +1,6 @@
 package subway.view;
 
 import java.util.List;
-import subway.response.StationDto;
 
 public class OutputView {
 
@@ -17,12 +16,13 @@ public class OutputView {
         System.out.println(Response.DELETE_STATION.getWithEnter());
     }
 
-    public void printStations(final List<StationDto> stationDtos) {
-        stationDtos.forEach(this::printStation);
+    public void printStations(final List<String> stationNames) {
+        System.out.println(Response.STATIONS.value);
+        stationNames.forEach(this::printStation);
     }
 
-    private void printStation(final StationDto stationDto) {
-        System.out.printf(Response.PREFIX + "%s" + Response.ENTER, stationDto.getName());
+    private void printStation(final String stationName) {
+        System.out.printf(Response.PREFIX + "%s" + Response.ENTER, stationName);
     }
 
     public void printCreateLine() {
@@ -33,11 +33,22 @@ public class OutputView {
         System.out.println(Response.DELETE_LINE.getWithEnter());
     }
 
+    public void printLines(List<String> lineNames) {
+        System.out.println(Response.LINES.value);
+        lineNames.forEach(this::printLine);
+    }
+
+    private void printLine(String lineName) {
+        System.out.printf(Response.PREFIX + "%s" + Response.ENTER, lineName);
+    }
+
     private enum Response {
         CREATE_STATION("지하철 역이 등록되었습니다."),
         DELETE_STATION("지하철 역이 삭제되었습니다."),
         CREATE_LINE("지하철 노선이 등록되었습니다."),
-        DELETE_LINE("지하철 노선이 삭제되었습니다.");
+        DELETE_LINE("지하철 노선이 삭제되었습니다."),
+        STATIONS("## 역 목록"),
+        LINES("## 노선 목록");
 
         private static final String PREFIX = "[INFO] ";
         private static final String ENTER = System.lineSeparator();

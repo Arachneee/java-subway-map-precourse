@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import subway.InputRoofer;
 import subway.domain.Station;
 import subway.domain.StationLineFunction;
-import subway.response.StationDto;
 import subway.service.StationService;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -86,13 +85,13 @@ public class StationController {
 
     private void read() {
         List<Station> stations = StationService.readAll();
-        List<StationDto> stationDtos = createStationDtos(stations);
-        outputView.printStations(stationDtos);
+        List<String> stationNames = createStationNames(stations);
+        outputView.printStations(stationNames);
     }
 
-    private static List<StationDto> createStationDtos(List<Station> stations) {
+    private static List<String > createStationNames(List<Station> stations) {
         return stations.stream()
-                .map(station -> new StationDto(station.getName()))
+                .map(Station::getName)
                 .collect(Collectors.toList());
     }
 }

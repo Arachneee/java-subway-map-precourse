@@ -1,5 +1,6 @@
 package subway.service;
 
+import java.util.List;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
@@ -23,5 +24,9 @@ public class LineService {
         if (!success) {
             throw new GameException(ErrorMessage.NONE_LINE);
         }
+    }
+
+    public static List<Line> readAll() {
+        return LineRepository.lines();
     }
 }
