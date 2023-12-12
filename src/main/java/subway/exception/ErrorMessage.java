@@ -15,7 +15,9 @@ public enum ErrorMessage {
     INVALID_RANGE("잘못된 범위입니다."),
     INVALID_SIZE("잘못된 크기입니다."),
     INVALID_FORMAT("입력 형식이 잘못되었습니다."),
-    INVALID_SECTION("구간으로 등록할 수 없습니다.");
+    INVALID_SECTION("구간으로 등록할 수 없습니다."),
+    INVALID_STATION_COUNT("역의 수가 부족합니다."),
+    NONE_SECTION("존재하지 않는 구간입니다.");
 
     private static final String PREFIX = "[ERROR] ";
     private final String message;

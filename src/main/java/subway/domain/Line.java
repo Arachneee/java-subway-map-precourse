@@ -60,6 +60,10 @@ public class Line {
         return stations.removeIf(station -> Objects.equals(station.getName(), deletedStation));
     }
 
+    public int totalStationCount() {
+        return stations.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
